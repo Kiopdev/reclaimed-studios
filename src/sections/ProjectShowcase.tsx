@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export function ProjectShowcase() {
   return (
-    <section className="relative py-24 z-10 border-t border-white/5 bg-darker/50 backdrop-blur-sm">
+    <section id="project" className="relative py-24 z-10 border-t border-white/5 bg-darker/50 backdrop-blur-sm">
       <div className="container mx-auto px-8 lg:px-24 flex justify-end">
         <div className="w-full lg:w-[60%] flex flex-col items-center lg:items-end">
           <motion.div
@@ -35,16 +35,6 @@ export function ProjectShowcase() {
                 <span className="pointer-events-none">Uncover the Truth</span>
                 <span className="group-hover:translate-x-1 transition-transform text-moss pointer-events-none">→</span>
               </Link>
-            </div>
-            
-            {/* Carousel Controls */}
-            <div className="flex items-center gap-2 mt-8 opacity-50">
-              <button className="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
-                ←
-              </button>
-              <button className="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
-                →
-              </button>
             </div>
           </motion.div>
         </div>

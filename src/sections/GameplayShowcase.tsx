@@ -34,34 +34,35 @@ export function GameplayShowcase() {
           {slots.map((slot, i) => (
             <motion.div 
               key={slot.id}
+              whileHover={{ scale: 1.02 }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
+              transition={{ delay: i * 0.05, duration: 0.4 }}
               className={`relative overflow-hidden group border ${slot.locked ? 'border-white/5 bg-white/[0.01]' : 'border-gold/20 bg-darker hover:border-gold/50'} cursor-pointer aspect-video flex flex-col justify-end p-4 transition-all duration-500`}
             >
               {!slot.locked && (
-                <div className="absolute inset-0 bg-gold/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               )}
               
               {!slot.locked ? (
                 <>
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                    <div className="w-10 h-10 rounded-full border border-gold bg-gold/10 flex items-center justify-center text-gold backdrop-blur-sm">
-                      <Play className="opacity-80 ml-1" size={16} fill="currentColor" />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 z-10 scale-90 group-hover:scale-100">
+                    <div className="w-12 h-12 rounded-full border border-gold bg-gold/10 flex items-center justify-center text-gold backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+                      <Play className="opacity-100 ml-1" size={20} fill="currentColor" />
                     </div>
                   </div>
-                  <div className="relative z-10 flex justify-between items-end w-full font-mono text-[9px] uppercase tracking-widest text-gray-400 group-hover:text-white transition-colors">
+                  <div className="relative z-10 flex justify-between items-end w-full font-mono text-[9px] uppercase tracking-widest text-gray-400 group-hover:text-white transition-colors duration-300 transform translate-y-2 group-hover:translate-y-0">
                     <div>
-                      <div className="text-gold mb-1">[DECRYPTED]</div>
+                      <div className="text-gold mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">[DECRYPTED]</div>
                       {slot.title}
                     </div>
                     <div>{slot.duration}</div>
                   </div>
                 </>
               ) : (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-white/20 font-mono text-[9px] tracking-widest uppercase">
-                  <Lock size={16} className="mb-2 opacity-50" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white/20 font-mono text-[9px] tracking-widest uppercase transition-colors group-hover:text-white/40">
+                  <Lock size={16} className="mb-2 opacity-50 group-hover:opacity-100 transition-opacity" />
                   Signal Lost
                 </div>
               )}

@@ -23,18 +23,18 @@ export function Hero() {
       {banner && (
         <div className="absolute inset-0 z-[-1] overflow-hidden">
           <motion.div
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            className="w-full h-full bg-cover bg-center opacity-40 md:opacity-60"
+            animate={{ scale: [1, 1.15, 1], x: [0, -30, 0] }}
+            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+            className="w-full h-full bg-cover bg-center opacity-40 md:opacity-60 mix-blend-screen"
             style={{ backgroundImage: `url(${banner})` }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-darker via-darker/60 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-darker via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-darker via-darker/70 to-transparent mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-t from-darker via-transparent border-b-2 border-darker" />
           {/* Subtle light leak */}
           <motion.div 
-            animate={{ opacity: [0.1, 0.3, 0.1], x: [-50, 50, -50] }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-0 right-1/4 w-[50vw] h-[50vh] bg-moss/20 blur-[150px] rounded-full" 
+            animate={{ opacity: [0.1, 0.4, 0.1], x: [-100, 100, -100] }}
+            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[20%] right-[10%] w-[60vw] h-[60vh] bg-gold/10 blur-[200px] rounded-full mix-blend-screen" 
           />
         </div>
       )}

@@ -58,7 +58,10 @@ export function StudioSnapshot() {
             Stories, devlogs, and updates from our journey.
           </p>
 
-          <form className="flex border border-white/20 relative z-10 focus-within:border-moss transition-colors">
+          <form 
+            className="flex border border-white/20 relative z-10 focus-within:border-moss transition-colors"
+            onSubmit={(e) => e.preventDefault()}
+          >
              <input type="email" placeholder="ENTER YOUR EMAIL" className="bg-transparent border-none outline-none text-xs font-mono px-4 py-3 w-full uppercase placeholder:text-gray-600 focus:ring-0" />
              <button type="submit" className="px-4 hover:bg-white/5 transition-colors border-l border-white/20 group-focus-within:border-moss">
                <ArrowRight size={14} className="text-gray-500 hover:text-moss transition-colors" />

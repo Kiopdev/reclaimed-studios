@@ -26,7 +26,7 @@ export function LostPunkLogo({ className }: { className?: string }) {
             transition={{ duration: 1, delay: 0.2 }}
             className="font-serif font-black text-3xl md:text-5xl tracking-[0.45em] mb-[-0.5rem] md:mb-[-1rem] opacity-90 grunge-text z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
           >
-            THE
+            PROJECT
           </motion.div>
 
           {/* LOST  - Fallback */}
@@ -36,7 +36,7 @@ export function LostPunkLogo({ className }: { className?: string }) {
             transition={{ duration: 1.5, delay: 0.4 }}
             className="flex font-anton text-[6rem] md:text-[10rem] leading-[0.85] tracking-tight grunge-text drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
           >
-            LOST PUNK
+            RECLAIMED
           </motion.div>
 
           {/* Bottom Line & Triangles  - Fallback */}

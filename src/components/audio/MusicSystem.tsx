@@ -2,11 +2,11 @@ import { motion, useDragControls } from 'motion/react';
 import { Play, Disc3, Volume2, VolumeX, GripVertical } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
-export function MusicSystem() {
+export function MusicSystem({ startMusic }: { startMusic?: boolean }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(() => {
     const saved = localStorage.getItem('lps_volume');
-    return saved ? parseFloat(saved) : 0;
+    return saved ? parseFloat(saved) : 0.3; // Default 0.3 instead of 0
   });
   const [audioUrl, setAudioUrl] = useState('/music/ambient.mp3');
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -23,10 +23,37 @@ export function MusicSystem() {
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.volume = volume;
+      if (isPlaying) {
+        audioRef.current.volume = volume;
+      }
     }
     localStorage.setItem('lps_volume', volume.toString());
-  }, [volume]);
+  }, [volume, isPlaying]);
+
+  useEffect(() => {
+    if (startMusic && !isPlaying) {
+      if (audioRef.current) {
+        audioRef.current.volume = 0;
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+          // Fade in
+          let currentVol = 0;
+          const targetVol = volume > 0 ? volume : 0.3;
+          if (volume === 0) setVolume(targetVol);
+          const fadeInterval = setInterval(() => {
+            currentVol += 0.05;
+            if (currentVol >= targetVol) {
+              if (audioRef.current) audioRef.current.volume = targetVol;
+              clearInterval(fadeInterval);
+            } else {
+              if (audioRef.current) audioRef.current.volume = currentVol;
+            }
+          }, 200);
+        }).catch(e => console.log("Audio play blocked by browser."));
+      }
+    }
+  }, [startMusic]);
+
 
   const togglePlay = () => {
     if (audioRef.current) {
@@ -63,7 +90,6 @@ export function MusicSystem() {
           ref={audioRef} 
           src={audioUrl} 
           loop 
-          autoPlay
           onPlay={() => setIsPlaying(true)}
         />
 

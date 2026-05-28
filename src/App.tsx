@@ -17,6 +17,9 @@ import { FutureUpdates } from './sections/FutureUpdates';
 import { BehindTheVision } from './sections/BehindTheVision';
 import { TerminalOverlay } from './components/ui/TerminalOverlay';
 import { MusicSystem } from './components/audio/MusicSystem';
+import { EnterExperience } from './components/ui/EnterExperience';
+import { AtmosphereSystem } from './components/ui/AtmosphereSystem';
+import { RebootSystem } from './components/ui/RebootSystem';
 import { Discover } from './pages/Discover';
 
 function Footer() {
@@ -58,9 +61,9 @@ function Footer() {
 
         <div className="flex flex-col gap-3 font-mono text-[10px] tracking-widest uppercase">
           <div className="text-white mb-2">Studio</div>
-          <a href="#" className="hover:text-gold transition-colors">Team</a>
-          <a href="#" className="hover:text-gold transition-colors">Careers</a>
-          <a href="#" className="hover:text-gold transition-colors">Press Kit</a>
+          <a href="#studio" className="hover:text-gold transition-colors block">Team</a>
+          <a href="#updates" className="hover:text-gold transition-colors block">Roadmap</a>
+          <div className="text-gray-600 block">Careers (Closed)</div>
         </div>
 
         <div className="flex flex-col gap-3 font-mono text-[10px] tracking-widest uppercase">
@@ -101,17 +104,21 @@ function HomePage() {
       <BehindTheVision />
       <FutureUpdates />
       <StudioSnapshot />
+      <RebootSystem />
     </>
   );
 }
 
 export default function App() {
+  const [hasEntered, setHasEntered] = useState(false);
   useAudioHover();
   
   return (
     <BrowserRouter>
       <ScrollToTop />
+      {!hasEntered && <EnterExperience onEnter={() => setHasEntered(true)} />}
       <SmoothScroll>
+        <AtmosphereSystem />
         <CustomCursor />
         
         {/* 3D Atmosphere Layer */}
@@ -121,7 +128,7 @@ export default function App() {
         <div className="scanline" />
         <div className="noise-overlay" />
         
-        <MusicSystem />
+        <MusicSystem startMusic={hasEntered} />
         <TerminalOverlay />
 
         <Navbar />
